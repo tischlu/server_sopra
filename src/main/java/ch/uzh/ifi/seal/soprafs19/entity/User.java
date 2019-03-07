@@ -31,6 +31,19 @@ public class User implements Serializable {
 	@Column(nullable = false)
 	private UserStatus status;
 
+	//creation date
+	@Column(nullable = false)
+	private String email;
+
+	@Column(nullable = false)
+	private String password;
+
+	@Column(nullable = false)
+	private String creationDate;
+
+
+
+
 	public Long getId() {
 		return id;
 	}
@@ -69,6 +82,30 @@ public class User implements Serializable {
 
 	public void setStatus(UserStatus status) {
 		this.status = status;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getCreationDateDate() {
+		return creationDate;
+	}
+
+	public void setCreationDateDate(String date) {
+		this.creationDate = date;
 	}
 
 	@Override
