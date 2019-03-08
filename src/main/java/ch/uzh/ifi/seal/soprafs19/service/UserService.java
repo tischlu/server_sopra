@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import ch.uzh.ifi.seal.soprafs19.exceptions.userException;
 
 import java.util.UUID;
 
@@ -36,12 +37,16 @@ public class UserService {
         log.debug("Created Information for User: {}", newUser);
         return newUser;
     }
-    public User checkUsername(User checkedUser, User targetUser) {
+    public User checkUsername(User checkedUser, User targetUser) throws userException  {
         targetUser = userRepository.findByUsername(checkedUser.getUsername());
         if (targetUser != null) {
             if (targetUser.getPassword().equals(checkedUser.getPassword())) {
                 return targetUser;
-            } // else throw wrong password exception
-        } //else throw invalid username exception
+            } else {
+                throw new userException("Wrong password");
+            }
+        } else {
+            throw new userException("Invalid username");
+        }
     }
 }

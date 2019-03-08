@@ -3,11 +3,14 @@ package ch.uzh.ifi.seal.soprafs19.entity;
 import ch.uzh.ifi.seal.soprafs19.constant.UserStatus;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import ch.uzh.ifi.seal.soprafs19.timeStamp.timeStamp;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 public class User implements Serializable {
@@ -41,6 +44,9 @@ public class User implements Serializable {
 	@Column(nullable = false)
 	private String birthday;
 
+	////
+	@DateTimeFormat
+	private Date date;
 
 
 
@@ -106,6 +112,14 @@ public class User implements Serializable {
 
 	public void setBirthday(String date) {
 		this.birthday = date;
+	}
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
 	}
 
 	@Override
