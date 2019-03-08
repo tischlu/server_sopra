@@ -39,7 +39,7 @@ public class User implements Serializable {
 	private String password;
 
 	@Column(nullable = false)
-	private String creationDate;
+	private String birthday;
 
 
 
@@ -100,12 +100,12 @@ public class User implements Serializable {
 		this.password = password;
 	}
 
-	public String getCreationDateDate() {
-		return creationDate;
+	public String getBirthday() {
+		return birthday;
 	}
 
-	public void setCreationDateDate(String date) {
-		this.creationDate = date;
+	public void setBirthday(String date) {
+		this.birthday = date;
 	}
 
 	@Override
