@@ -41,7 +41,7 @@ public class UserService {
         if (targetUser != null) {
             if (targetUser.getPassword().equals(checkedUser.getPassword())) {
                 return targetUser;
-            }
-        }
+            } // else throw wrong password exception
+        } //else throw invalid username exception
     }
 }
