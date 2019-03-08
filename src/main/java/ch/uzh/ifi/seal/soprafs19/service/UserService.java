@@ -36,4 +36,12 @@ public class UserService {
         log.debug("Created Information for User: {}", newUser);
         return newUser;
     }
+    public User checkUsername(User aUser) {
+        if (aUser.getId() == null) {
+            return "username not found"
+        } else {
+
+        }
+
+    }
 }

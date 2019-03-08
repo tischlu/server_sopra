@@ -18,8 +18,8 @@ public class User implements Serializable {
 	@Id
 	@GeneratedValue
 	private Long id;
-	
-	@Column(nullable = false) 
+
+	@Column(nullable = false)
 	private String name;
 	
 	@Column(nullable = false, unique = true) 
@@ -32,7 +32,7 @@ public class User implements Serializable {
 	private UserStatus status;
 
 	//creation date
-	@Column(nullable = false)
+	@Column(nullable = false, unique = true)
 	private String email;
 
 	@Column(nullable = false)
