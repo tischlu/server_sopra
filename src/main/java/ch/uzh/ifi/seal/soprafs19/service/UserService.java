@@ -37,8 +37,8 @@ public class UserService {
         log.debug("Created Information for User: {}", newUser);
         return newUser;
     }
-    public User checkUsername(User checkedUser, User targetUser) throws userException  {
-        targetUser = userRepository.findByUsername(checkedUser.getUsername());
+    public User checkUsername(User checkedUser) throws userException  {
+        User targetUser = userRepository.findByUsername(checkedUser.getUsername());
         if (targetUser != null) {
             if (targetUser.getPassword().equals(checkedUser.getPassword())) {
                 return targetUser;
