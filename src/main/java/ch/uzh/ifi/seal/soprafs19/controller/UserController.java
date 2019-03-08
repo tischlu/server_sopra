@@ -26,4 +26,9 @@ public class UserController {
     User createUser(@RequestBody User newUser) {
         return this.service.createUser(newUser);
     }
+
+    @PostMapping("/login")
+    User checkUser(@RequestBody User checkedUser) {
+        return this.service.checkUsername(checkedUser);
+    }
 }
