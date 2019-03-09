@@ -22,31 +22,33 @@ public class User implements Serializable {
 	@GeneratedValue
 	private Long id;
 
-	@Column(nullable = false)
+	@Column(nullable = true)
 	private String name;
 	
 	@Column(nullable = false, unique = true) 
 	private String username;
 	
-	@Column(nullable = false, unique = true) 
+	@Column(nullable = true, unique = true)
 	private String token;
 
-	@Column(nullable = false)
+	@Column(nullable = true)
 	private UserStatus status;
 
 	//creation date
-	@Column(nullable = false, unique = true)
+	@Column(nullable = true, unique = true)
 	private String email;
 
 	@Column(nullable = false)
 	private String password;
 
-	@Column(nullable = false)
+	@Column(nullable = true)
 	private String birthday;
 
+
+
 	////
-	@DateTimeFormat
-	private Date date;
+	@Column(nullable = false)
+	private String creationDate;
 
 
 
@@ -114,12 +116,12 @@ public class User implements Serializable {
 		this.birthday = date;
 	}
 
-	public Date getDate() {
-		return date;
+	public String getCreationDate() {
+		return creationDate;
 	}
 
-	public void setDate(Date date) {
-		this.date = date;
+	public void setCreationDate(String creationDate) {
+		this.creationDate = creationDate;
 	}
 
 	@Override
