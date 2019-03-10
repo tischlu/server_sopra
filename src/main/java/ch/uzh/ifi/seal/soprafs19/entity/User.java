@@ -9,8 +9,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import ch.uzh.ifi.seal.soprafs19.timeStamp.timeStamp;
-import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 public class User implements Serializable {

@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ch.uzh.ifi.seal.soprafs19.exceptions.userException;
+
 import java.time.LocalDate;
 
 import java.util.UUID;
@@ -43,6 +44,8 @@ public class UserService {
         User targetUser = userRepository.findByUsername(checkedUser.getUsername());
         if (targetUser != null) {
             if (targetUser.getPassword().equals(checkedUser.getPassword())) {
+                targetUser.setStatus(UserStatus.ONLINE);
+                log.debug("login successfull");
                 return targetUser;
             } else {
                 throw new userException("Wrong password");
