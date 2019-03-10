@@ -33,7 +33,6 @@ public class UserController {
     }
 
     @GetMapping("/profile")
-    User returnID(@RequestBody User loggedInUser) { return this.}
-
+    Long returnID(@RequestBody User loggedInUser) { return this.service.returnID(loggedInUser); }
 
 }
