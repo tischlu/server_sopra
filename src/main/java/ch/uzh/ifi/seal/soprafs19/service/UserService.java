@@ -65,6 +65,21 @@ public class UserService {
 
     }
 
+    public User editCredentials(long id, User editUser) {
+        User targetUser = this.userRepository.findById(id);
+        if (targetUser != null && editUser.getId() == id) {
+            String newUsername = editUser.getUsername();
+            String newBirthday = editUser.getBirthday();
+            if (newBirthday!= null) {
+                targetUser.setBirthday(newBirthday);
+            }
+            if (newUsername != null) {
+                targetUser.setUsername((newUsername));
+            }
+            return targetUser;
+        }
+    }
+
 
 
 }
