@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ch.uzh.ifi.seal.soprafs19.exceptions.userException;
+import ch.uzh.ifi.seal.soprafs19.exceptions.notFoundException;
 
 import java.time.LocalDate;
 
@@ -42,7 +43,7 @@ public class UserService {
     }
 
     public User checkUsername(User checkedUser) throws userException  {
-        User targetUser = userRepository.findByUsername(checkedUser.getUsername());
+        User targetUser = this.userRepository.findByUsername(checkedUser.getUsername());
         if (targetUser != null) {
             if (targetUser.getPassword().equals(checkedUser.getPassword())) {
                 targetUser.setStatus(UserStatus.ONLINE);
@@ -56,8 +57,14 @@ public class UserService {
         }
     }
 
-    public Long returnID(User loggedInUser) {
-        Long id = loggedInUser.getId();
-        return id;
+    public User getUserById(Long id) {
+        return userRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("hallo"));
+        //User targetUser = this.userRepository.findById(id);
+        //return targetUser;
+
     }
+
+
+
 }

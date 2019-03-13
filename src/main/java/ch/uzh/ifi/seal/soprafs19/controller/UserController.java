@@ -21,18 +21,17 @@ public class UserController {
         return service.getUsers();
     }
 
+    @GetMapping("/users/{id}")
+    User returnUser(@PathVariable Long id) {return service.getUserById(id);}
+
     @PostMapping("/users")
     User createUser(@RequestBody User newUser) {
         return this.service.createUser(newUser);
     }
 
-    @PostMapping("/login")
-    @ExceptionHandler({userException.class})
+    @PostMapping("/login") //loginUser
     User checkUser(@RequestBody User checkedUser) {
-        return this.service.checkUsername(checkedUser);
+        return service.checkUsername(checkedUser);
     }
-
-    @GetMapping("/profile")
-    Long returnID(@RequestBody User loggedInUser) { return this.service.returnID(loggedInUser); }
 
 }
