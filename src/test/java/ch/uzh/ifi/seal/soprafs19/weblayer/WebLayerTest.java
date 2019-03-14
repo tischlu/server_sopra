@@ -130,7 +130,7 @@ public class WebLayerTest {
     public void updateUserProfileFail() throws Exception{
 
         JSONObject updateUser = new JSONObject();
-        updateUser.put("username", "takenname"); //Taken
+        updateUser.put("username", "takennname"); //Taken
         updateUser.put("birthday", "1444-10-10");
 
 

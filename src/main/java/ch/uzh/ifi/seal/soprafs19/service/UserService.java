@@ -100,7 +100,7 @@ public class UserService {
                         user.setBirthday(editUser.getBirthday());
                         return userRepository.save(user);
                     })
-                    .orElseThrow(() -> new RuntimeException("User not found"));
+                    .orElseThrow(() -> new notFoundException("User not found"));
         }
     }
 
