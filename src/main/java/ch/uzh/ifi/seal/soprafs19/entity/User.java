@@ -32,7 +32,6 @@ public class User implements Serializable {
 	@Column(nullable = true)
 	private UserStatus status;
 
-	//creation date
 	@Column(nullable = true, unique = true)
 	private String email;
 
@@ -42,9 +41,6 @@ public class User implements Serializable {
 	@Column(nullable = true)
 	private String birthday;
 
-
-
-	////
 	@Column(nullable = false)
 	private String creationDate;
 

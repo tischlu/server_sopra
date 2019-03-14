@@ -92,7 +92,6 @@ public class WebLayerTest {
         existingUser2.setId(1l);
         this.userRepository.save(existingUser2);
 
-        //JSONObject user = new JSONObject();
 
         this.mockMvc.perform(get("/users/{id}", 1l).contentType("application/json;charset=UTF-8").content(existingUser2.toString()))
                 .andExpect(status().isOk());

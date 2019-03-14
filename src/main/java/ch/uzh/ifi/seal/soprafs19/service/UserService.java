@@ -69,27 +69,11 @@ public class UserService {
     public User getUserById(Long id) {
         return userRepository.findById(id)
                 .orElseThrow(() -> new notFoundException("could not find id"));
-        //User targetUser = this.userRepository.findById(id);
-        //return targetUser;
+
 
     }
 
-    /*public User editCredentials(long id, User editUser) throws RuntimeException{
-        User targetUser = this.userRepository.findById(id);
-        if (targetUser != null && targetUser.getId() == id) {
-            String newUsername = editUser.getUsername();
-            String newBirthday = editUser.getBirthday();
-            if (newBirthday!= null) {
-                targetUser.setBirthday(newBirthday);
-            }
-            if (newUsername != null) {
-                targetUser.setUsername((newUsername));
-            }
-            this.userRepository.save(targetUser);
-            return targetUser;
-        }
-        throw new RuntimeException("as");
-    }*/
+
     public User editCredentials(Long id, User editUser) throws RuntimeException{
 
         if (userRepository.existsByUsername(editUser.getUsername())) throw new RuntimeException("Message");
