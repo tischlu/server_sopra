@@ -33,13 +33,22 @@ public class UserService {
         return this.userRepository.findAll();
     }
 
-    public User createUser(User newUser) {
-        newUser.setToken(UUID.randomUUID().toString());
-        newUser.setStatus(UserStatus.ONLINE);
-        newUser.setCreationDate(LocalDate.now().toString());
-        userRepository.save(newUser);
-        log.debug("Created Information for User: {}", newUser);
-        return newUser;
+    public User createUser(User newUser) throws userException {
+        User duplicateName = this.userRepository.findByUsername(newUser.getUsername());
+        User duplicateMail = this.userRepository.findByUsername(newUser.getEmail());
+        if (duplicateName != null) {
+            throw new userException("Username already taken");
+        }
+        if (duplicateMail != null) {
+            throw new userException("Email already taken");
+        } else {
+            newUser.setToken(UUID.randomUUID().toString());
+            newUser.setStatus(UserStatus.ONLINE);
+            newUser.setCreationDate(LocalDate.now().toString());
+            userRepository.save(newUser);
+            log.debug("Created Information for User: {}", newUser);
+            return newUser;
+        }
     }
 
     public User checkUsername(User checkedUser) throws userException  {
@@ -59,15 +68,15 @@ public class UserService {
 
     public User getUserById(Long id) {
         return userRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("hallo"));
+                .orElseThrow(() -> new notFoundException("could not find id"));
         //User targetUser = this.userRepository.findById(id);
         //return targetUser;
 
     }
 
-    public User editCredentials(long id, User editUser) {
+    /*public User editCredentials(long id, User editUser) throws RuntimeException{
         User targetUser = this.userRepository.findById(id);
-        if (targetUser != null && editUser.getId() == id) {
+        if (targetUser != null && targetUser.getId() == id) {
             String newUsername = editUser.getUsername();
             String newBirthday = editUser.getBirthday();
             if (newBirthday!= null) {
@@ -76,7 +85,22 @@ public class UserService {
             if (newUsername != null) {
                 targetUser.setUsername((newUsername));
             }
+            this.userRepository.save(targetUser);
             return targetUser;
+        }
+        throw new RuntimeException("as");
+    }*/
+    public User editCredentials(Long id, User editUser) throws RuntimeException{
+
+        if (userRepository.existsByUsername(editUser.getUsername())) throw new RuntimeException("Message");
+        else {
+            return userRepository.findById(id)
+                    .map(user -> {
+                        user.setUsername(editUser.getUsername());
+                        user.setBirthday(editUser.getBirthday());
+                        return userRepository.save(user);
+                    })
+                    .orElseThrow(() -> new RuntimeException("User not found"));
         }
     }
 

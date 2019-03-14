@@ -35,7 +35,6 @@ public class UserController {
     }
 
     @PutMapping("/users/{id}")
-    @CrossOrigin
-    void editCredentials(@PathVariable Long id, @RequestBody User editUser) { service.editCredentials(id, editUser); }
+    User editCredentials(@PathVariable Long id, @RequestBody User editUser) { return service.editCredentials(id, editUser); }
 
 }
